@@ -48,6 +48,11 @@ public class MazeSolver {
         }
     }
 
+    private boolean isInBounds(int x, int y) {
+        return x > 0 && y > 0 && x < rows - 1 && y < cols - 1;
+    }
+
+
     public static void main(String[] args) {
         MazeSolver mazeSolver = new MazeSolver(15, 15);
         System.out.println("Generated Maze:");
