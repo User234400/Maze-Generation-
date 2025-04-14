@@ -26,5 +26,10 @@ public class MazeSolver {
             Arrays.fill(maze[i], WALL);
     }
 
+    // Start carving
+    maze[startX][startY] = PATH;
+    carve(startX, startY);
+
+    maze[endX][endY] = PATH;
 
 }
