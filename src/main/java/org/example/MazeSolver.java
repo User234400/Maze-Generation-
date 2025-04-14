@@ -52,6 +52,23 @@ public class MazeSolver {
         return x > 0 && y > 0 && x < rows - 1 && y < cols - 1;
     }
 
+    public boolean solve(int x, int y) {
+        if (!isInBounds(x, y) || maze[x][y] == WALL || visited[x][y]) return false;
+        visited[x][y] = true;
+
+        if (x == endX && y == endY) {
+            maze[x][y] = VISITED;
+            return true;
+        }
+
+        if (solve(x + 1, y) || solve(x - 1, y) || solve(x, y + 1) || solve(x, y - 1)) {
+            maze[x][y] = VISITED;
+            return true;
+        }
+
+        return false;
+    }
+
 
     public static void main(String[] args) {
         MazeSolver mazeSolver = new MazeSolver(15, 15);
