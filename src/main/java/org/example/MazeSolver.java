@@ -20,4 +20,11 @@ public class MazeSolver {
         //generateMaze();
     }
 
+    private void generateMaze() {
+        // Fill maze with walls
+        for (int i = 0; i < rows; i++)
+            Arrays.fill(maze[i], WALL);
+    }
+
+
 }
