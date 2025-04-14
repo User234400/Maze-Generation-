@@ -24,12 +24,28 @@ public class MazeSolver {
         // Fill maze with walls
         for (int i = 0; i < rows; i++)
             Arrays.fill(maze[i], WALL);
+
+        // Start carving
+        maze[startX][startY] = PATH;
+        carve(startX, startY)
+        maze[endX][endY] = PATH;
+
     }
 
-    // Start carving
-    maze[startX][startY] = PATH;
-    carve(startX, startY);
+    private void carve(int x, int y) {
+        int[][] directions = {{0, 2}, {0, -2}, {2, 0}, {-2, 0}};
+        Collections.shuffle(Arrays.asList(directions)); // Randomize directions
 
-    maze[endX][endY] = PATH;
+        for (int[] d : directions) {
+            int nx = x + d[0];
+            int ny = y + d[1];
+
+            if (isInBounds(nx, ny) && maze[nx][ny] == WALL) {
+                maze[nx][ny] = PATH;
+                maze[x + d[0] / 2][y + d[1] / 2] = PATH;
+                carve(nx, ny);
+            }
+        }
+    }
 
 }
