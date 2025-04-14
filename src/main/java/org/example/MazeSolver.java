@@ -8,6 +8,12 @@ public class MazeSolver {
     private static final char PATH = ' ';
     private static final char VISITED = '.';
 
+    private char[][] maze;
+    private boolean[][] visited;
+    private int rows, cols;
+    private int startX = 1, startY = 1;
+    private int endX, endY;
+
     public MazeSolver(int rows, int cols) {
         // Ensure odd dimensions
         this.rows = (rows % 2 == 0) ? rows + 1 : rows;
@@ -17,7 +23,7 @@ public class MazeSolver {
         endX = this.rows - 2;
         endY = this.cols - 2;
 
-        //generateMaze();
+        generateMaze();
     }
 
     private void generateMaze() {
@@ -27,9 +33,9 @@ public class MazeSolver {
 
         // Start carving
         maze[startX][startY] = PATH;
-        carve(startX, startY)
-        maze[endX][endY] = PATH;
+        carve(startX, startY);
 
+        maze[endX][endY] = PATH;
     }
 
     private void carve(int x, int y) {
@@ -69,6 +75,15 @@ public class MazeSolver {
         return false;
     }
 
+    public void display() {
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                System.out.print(maze[i][j]);
+            }
+            System.out.println();
+        }
+        System.out.println();
+    }
 
     public static void main(String[] args) {
         MazeSolver mazeSolver = new MazeSolver(15, 15);
@@ -78,5 +93,12 @@ public class MazeSolver {
         System.out.println("Solving Maze...");
         boolean solved = mazeSolver.solve(mazeSolver.startX, mazeSolver.startY);
 
+        if (solved) {
+            System.out.println("Path found!");
+        } else {
+            System.out.println("No path found.");
+        }
 
+        mazeSolver.display();
     }
+}
