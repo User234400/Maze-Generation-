@@ -48,4 +48,13 @@ public class MazeSolver {
         }
     }
 
-}
+    public static void main(String[] args) {
+        MazeSolver mazeSolver = new MazeSolver(15, 15);
+        System.out.println("Generated Maze:");
+        mazeSolver.display();
+
+        System.out.println("Solving Maze...");
+        boolean solved = mazeSolver.solve(mazeSolver.startX, mazeSolver.startY);
+
+
+    }
